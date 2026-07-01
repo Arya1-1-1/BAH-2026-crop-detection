@@ -1,0 +1,10 @@
+# Ignore everything by default
+*
+
+# But allow these specific things
+!.gitignore
+!README.md
+!*.py
+!crop_data.csv
+!src/
+!src/**
