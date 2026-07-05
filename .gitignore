@@ -8,3 +8,5 @@
 !crop_data.csv
 !src/
 !src/**
+!gee/
+!gee/**
