@@ -64,19 +64,37 @@ Format exactly like this:
     result = response.json()
     return result
 
-# Test with dummy data
-result = get_crop_advisory(
+# Test case 1: Water-stressed wheat
+print("### TEST 1: Water-stressed wheat ###")
+result1 = get_crop_advisory(
     crop="Wheat",
     district="Karnal",
     ndvi=0.3,
     ndwi=-0.2,
     farmer_query="My wheat leaves are turning yellow"
 )
+print(result1['choices'][0]['message']['content'])
+print("\n")
 
-advisory = result['choices'][0]['message']['content']
+# Test case 2: Healthy rice, farmer just checking in
+print("### TEST 2: Healthy rice crop ###")
+result2 = get_crop_advisory(
+    crop="Rice",
+    district="Kaithal",
+    ndvi=0.7,
+    ndwi=0.4,
+    farmer_query="Is my crop okay? When should I irrigate next?"
+)
+print(result2['choices'][0]['message']['content'])
+print("\n")
 
-print("=== AgriSense AI Advisory ===")
-print(advisory)
-print("\n=== DEBUG INFO ===")
-print("Finish reason:", result['choices'][0]['finish_reason'])
-print("Tokens used:", result['usage'])
+# Test case 3: Mustard with unknown pest issue
+print("### TEST 3: Mustard with pest concern ###")
+result3 = get_crop_advisory(
+    crop="Mustard",
+    district="Jind",
+    ndvi=0.45,
+    ndwi=0.1,
+    farmer_query="I see small insects on my mustard leaves, what should I do?"
+)
+print(result3['choices'][0]['message']['content'])
